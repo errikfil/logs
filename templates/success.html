@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="el">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <title>Flight Viewer</title>
+    
+        <link rel="stylesheet"
+              href="https://unpkg.com/leaflet/dist/leaflet.css">
+    
+        <link rel="stylesheet"
+              href="{{ url_for('static', filename='css/style.css') }}">
+    
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    </head>
+<body>
+
+<div class="topbar">
+    <div class="title">🚁 Drone Flight Viewer</div>
+    <a class="back-link" href="/">Upload άλλο αρχείο</a>
+</div>
+
+<div class="dashboard">
+
+    <aside class="sidebar">
+        <div class="card">
+            <h3>Flight File</h3>
+            <p>{{ filename }}</p>
+            <span class="badge">CSV loaded</span>
+
+            <br><br>
+            <button onclick="startReplay()" style="
+                width:100%;
+                padding:10px;
+                border:none;
+                border-radius:8px;
+                background:#38bdf8;
+                color:#020617;
+                font-weight:bold;
+                cursor:pointer;
+            ">
+                ▶ Replay Flight
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>Flight Summary</h3>
+            <div class="stat">
+                <span>Σημεία</span>
+                <span>{{ flight_data|length }}</span>
+            </div>
+            <div class="stat">
+                <span>Start battery</span>
+                <span>{{ flight_data[0].battery }}%</span>
+            </div>
+            <div class="stat">
+                <span>End battery</span>
+                <span>{{ flight_data[-1].battery }}%</span>
+            </div>
+            <div class="stat">
+                <span>Max altitude</span>
+                <span id="maxAltitude">-</span>
+            </div>
+            <div class="stat">
+                <span>Max speed</span>
+                <span id="maxSpeed">-</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Legend</h3>
+            <div class="stat">
+                <span>🟢 Start</span>
+                <span>Takeoff</span>
+            </div>
+            <div class="stat">
+                <span>🔴 End</span>
+                <span>Landing</span>
+            </div>
+            <div class="stat">
+                <span>🟥 Line</span>
+                <span>Route</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main">
+        <div id="map"></div>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>Altitude</th>
+                        <th>Speed</th>
+                        <th>Battery</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for point in flight_data %}
+                    <tr>
+                        <td>{{ point.time }}</td>
+                        <td>{{ point.latitude }}</td>
+                        <td>{{ point.longitude }}</td>
+                        <td>{{ point.altitude }}</td>
+                        <td>{{ point.speed }}</td>
+                        <td>{{ point.battery }}%</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</div>
+
+<script>
+    window.flightData = {{ flight_data | tojson | safe }};
+</script>
+
+<script src="{{ url_for('static', filename='js/viewer.js') }}?v=2"></script>
+
+</body>
+</html>

@@ -1,0 +1,326 @@
+11:33:55.774 I/AppMainServiceImpl : ---> onCreate (DjiV2AppMainServiceImpl), creationTimeStamp=1777970035773
+11:33:56.176 I/AwsS3ClientImpl : Initializing AWS for US_EAST_1 bucket zv-autoflight-mobile-logs
+11:33:56.208 I/AppActivityImpl : (DjiV2StartActivity) onServiceConnected, name = .service.DjiV2AppMainServiceImpl
+11:33:56.213 I/StartActivity : all android permissions granted.
+11:33:56.214 I/Auth0IntegratorImpl : credentialsManager.getCredentials...
+11:33:56.220 I/Auth0IntegratorImpl : credentialsManager.onSuccess->email hdronwt02@gmail.com
+11:33:56.227 I/StartActivity : DbAuthUser granted.
+11:33:56.227 I/AfMainServiceImpl : onVerifyUserCredentialSuccess: hdronwt02@gmail.com
+11:33:56.234 I/DjiV2VehicleManagerImpl : DJISDKManager -> registerApp...
+11:33:56.236 I/DjiV2VehicleManagerImpl : DJISDKManager -> SDK VERSION = 5.16.0
+11:33:56.313 I/DjiV2VehicleManagerImpl : DJISDKManager -> onInitProcessSync START_TO_INITIALIZE, 0%
+11:33:56.604 I/DjiV2VehicleManagerImpl : DJISDKManager -> onInitProcessSync INITIALIZE_COMPLETE, 100%
+11:33:56.605 I/DjiV2VehicleManagerImpl : DJISDKManager -> registerAppSync...
+11:33:56.940 I/DjiV2VehicleManagerImpl : DJISDKManager -> onProductEvent CONNECT - 0
+11:33:57.291 I/DjiV2MoveController : onVirtualStickStateUpdate: enabled = false, advanced = false, auth = UNKNOWN
+11:33:57.357 I/DjiV2VehicleManagerImpl : DJISDKManager -> onRegisterResultSync OK
+11:33:57.357 I/DjiV2VehicleManagerImpl : DJISDKManager -> getFlyClogPath: /storage/emulated/0/Android/data/com.dronebase.af.app.djiv2/files/DJI/FlightRecord/MCDatFlightRecords/
+11:33:57.358 I/DjiV2VehicleManagerImpl : DJISDKManager -> getFlightRecordPath: /storage/emulated/0/Android/data/com.dronebase.af.app.djiv2/files/DJI/FlightRecord/
+11:33:57.361 I/DjiV2StartActivity : DJI SDK Registration SUCCESS
+11:33:57.363 I/WindDatabaseControllerImpl : DB file path is /storage/emulated/0/Android/data/com.dronebase.af.app.djiv2/files/db/windDb.sqlite
+11:33:57.366 I/App : Android device information:
+ Serial(8235c54f-01da-40bf-8b80-75133ba6f8f9)
+ Manufacturer(DJI), Model(DJI RC Plus), API(29), Android(10), Memory(5966831616)
+ ABIS(32_BIT: armeabi-v7a, armeabi; 64_BIT: arm64-v8a)
+ Display: xxhdpi(400dpi), 1160px x 1920px (464dp x 768dp)
+ screenWidthDp: 768dp, smallestScreenWidthDp: 480dp
+11:33:57.368 I/DjiV2VehicleManagerImpl : DJISDKManager -> startConnectionToProduct...
+11:33:57.368 I/DjiV2VehicleManagerImpl : DJISDKManager -> start listeners.
+11:33:57.382 I/DjiV2VehicleManagerImpl : DJISDKManager -> ProductType: NULL - M300_RTK
+11:33:57.383 I/ApplicationLogSynchronizationControllerImpl : sendApplicationCrashLogs: no crash logs to send found
+11:33:57.389 I/DjiV2VehicleManagerImpl : DJISDKManager: Aircraft not connected
+11:33:57.390 I/DjiV2VehicleManagerImpl : DJISDKManager -> SerialNumber: NULL - 1ZN3K84001P04Z
+11:33:57.391 I/DjiV2VehicleManagerImpl : Initialising DJI_MATRICE_300_RTK (DJI name: M300_RTK), serialNr: 1ZN3K84001P04Z 
+11:33:57.408 I/DjiV2CameraHandler : DJIV2CAMERA: payload report status productName:null isConnected:false getPayloadType:null index:LEFT_OR_MAIN
+11:33:57.408 I/DjiV2CameraHandler : DJIV2CAMERA: payload name connected: ZV_SONY
+11:33:57.409 I/DjiV2CameraHandler : setUpKeyListenersForSonyCamera [ZV_SONY - RIGHT]...
+11:33:57.410 I/DjiV2CameraHandler : DJIV2CAMERA: wait for all ZV2 components ready
+11:33:57.430 I/DjiV2VehicleManagerImpl : checkIfOnboard...
+11:33:57.431 I/LoggerToTimber : DjiV2AfOnboardHandler setUpKeyListeners OK
+11:33:57.465 I/DjiV2VideoSurfaceView : DJIV2CAMERA updatevideofeed init...
+11:33:57.467 I/DjiV2VideoFullFragment : DJIV2CAMERA updatevideofeed DjiV2VideoFullFragment created
+11:33:57.506 I/DjiV2VideoFullFragment : DJIV2CAMERA updatevideofeed DjiV2VideoFullFragment vm is null
+11:33:57.506 I/DjiV2VideoFullFragment : DJIV2CAMERA updatevideofeed DjiV2VideoFullFragment vm is null
+11:33:57.539 I/DjiV2VideoSurfaceView : DJIV2CAMERA updatevideofeed on surfaceCreated!
+11:33:57.539 I/DjiV2VideoSurfaceView : DJIV2CAMERA updatevideofeed onSurfaceTextureAvailable (w=1920 h=1200)
+11:33:57.540 I/DjiV2VideoSurfaceView : DJIV2CAMERA updatevideofeed (surfaceHolder is ready but no videofeed ready): surfaceName: DjiV2VideoFullFragment, videoSrcType: PRIMARY, djiVideoIndex: null, component: null, surfaceholder: android.view.SurfaceView$2@dd93fdb
+11:33:57.553 I/DjiV2EnvironmentHandler : WindWarning update: LEVEL_0
+11:33:57.554 I/DjiV2EnvironmentHandler : WindSpeed update:  n
+11:33:57.554 I/DjiV2EnvironmentHandler : WindDirection update: WINDLESS
+11:33:57.555 I/DjiV2HomeHandler : Home update Lat: 38.3566780 Lon: 22.5412544
+11:33:57.556 I/DjiV2InfoHandler : AircraftName: M300 RTK
+11:33:57.556 I/DjiV2InfoHandler : FlightControllerVersion: 03.04.18.73
+11:33:57.556 I/DjiV2InfoHandler : FirmwareVersion: 64.01.0009
+11:33:57.556 I/DjiV2PerceptionHandler : OBSTACLE_AVOIDANCE_ENABLED_KEY: true
+11:33:57.557 I/DjiV2SimulatorHandler : Simulator active: false
+11:33:57.557 I/DjiV2StateHandler : State -> rcControlMode update: P -> S
+11:33:57.559 I/DjiV2StateHandler : State -> controlMode update: UNKNOWN -> GPS_NORMAL
+11:33:57.560 I/DjiV2StateHandler : State -> controlModeAlias update: null -> RTK
+11:33:57.560 I/LoggerToTimber : DjiV2DroneMainController onVehicleControlModeChangedSync UNKNOWN -> GPS_NORMAL
+11:33:57.562 I/WindWorkflowControllerImpl : onVehicleConnectionChangedSync: Vehicle is Connected
+11:33:57.563 I/DjiV2GeoFenceHandler : GeoFence -> min/max altitude update: 20/1500
+11:33:57.567 I/AppActivityImpl : (DjiV2MainActivity) onServiceConnected, name = .service.DjiV2AppMainServiceImpl
+11:33:57.590 I/WindWorkflowControllerImpl : onVehicleControlModeChangedSync: reason is NULL, VehicleControlMode is MANUAL, native is GPS_NORMAL
+11:33:57.591 I/WindWorkflowControllerImpl : VehicleModel - 38.3566780/22.5412545(21) 0.00m att(0.9/0.0/-177.1) Landed battery(NULL) gimbal(NULL)
+11:33:57.598 I/Auth0IntegratorImpl : credentialsManager.getCredentials...
+11:33:57.601 I/Auth0IntegratorImpl : credentialsManager.getCredentials...
+11:33:57.602 I/TowerDatabaseControllerImpl : DB file path is /storage/emulated/0/Android/data/com.dronebase.af.app.djiv2/files/db/towerDb.sqlite
+11:33:57.604 I/Auth0IntegratorImpl : credentialsManager.getCredentials...
+11:33:57.617 I/Auth0IntegratorImpl : credentialsManager.onSuccess->email hdronwt02@gmail.com
+11:33:57.617 I/Auth0IntegratorImpl : credentialsManager.onSuccess->email hdronwt02@gmail.com
+11:33:57.621 I/Auth0IntegratorImpl : credentialsManager.onSuccess->email hdronwt02@gmail.com
+11:33:57.622 I/AfCloudServerApiClientImpl : sendApplicationActivityLog to http://ec2-34-207-57-114.compute-1.amazonaws.com:8080/mobapiauth0/appactivitylog, json: {"appName":"AF for DJI 2","appType":"AF_DJI_V2","deviceSerial":"8235c54f-01da-40bf-8b80-75133ba6f8f9","versionBuild":0,"versionMajor":4,"versionMinor":0}
+11:33:57.629 E/AwsS3ClientImpl : com.amazonaws.AmazonClientException: Unable to execute HTTP request: Unable to resolve host "zv-autoflight-mobile-logs.s3.amazonaws.com": No address associated with hostname
+	at com.amazonaws.http.AmazonHttpClient.executeHelper(SourceFile:1062)
+	at com.amazonaws.http.AmazonHttpClient.execute(SourceFile:11)
+	at com.amazonaws.services.s3.AmazonS3Client.invoke(SourceFile:18)
+	at com.amazonaws.services.s3.AmazonS3Client.putObject(SourceFile:63)
+	at com.dronebase.af.lib.autoflight.integration.aws.AwsS3ClientImpl.a(SourceFile:37)
+	at com.dronebase.af.lib.autoflight.controller.ApplicationLogSynchronizationControllerImpl.h(SourceFile:104)
+	at com.dronebase.af.lib.autoflight.controller.ApplicationLogSynchronizationControllerImpl.a(SourceFile:39)
+	at com.dronebase.af.lib.autoflight.controller.a.run(SourceFile:1)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:301)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+	at java.lang.Thread.run(Thread.java:919)
+Caused by: java.net.UnknownHostException: Unable to resolve host "zv-autoflight-mobile-logs.s3.amazonaws.com": No address associated with hostname
+	at java.net.Inet6AddressImpl.lookupHostByName(Inet6AddressImpl.java:124)
+	at java.net.Inet6AddressImpl.lookupAllHostAddr(Inet6AddressImpl.java:103)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1152)
+	at com.android.okhttp.Dns$1.lookup(Dns.java:41)
+	at com.android.okhttp.internal.http.RouteSelector.resetNextInetSocketAddress(RouteSelector.java:178)
+	at com.android.okhttp.internal.http.RouteSelector.nextProxy(RouteSelector.java:144)
+	at com.android.okhttp.internal.http.RouteSelector.next(RouteSelector.java:86)
+	at com.android.okhttp.internal.http.StreamAllocation.findConnection(StreamAllocation.java:176)
+	at com.android.okhttp.internal.http.StreamAllocation.findHealthyConnection(StreamAllocation.java:128)
+	at com.android.okhttp.internal.http.StreamAllocation.newStream(StreamAllocation.java:97)
+	at com.android.okhttp.internal.http.HttpEngine.connect(HttpEngine.java:289)
+	at com.android.okhttp.internal.http.HttpEngine.sendRequest(HttpEngine.java:232)
+	at com.android.okhttp.internal.huc.HttpURLConnectionImpl.execute(HttpURLConnectionImpl.java:465)
+	at com.android.okhttp.internal.huc.HttpURLConnectionImpl.connect(HttpURLConnectionImpl.java:131)
+	at com.android.okhttp.internal.huc.HttpURLConnectionImpl.getOutputStream(HttpURLConnectionImpl.java:262)
+	at com.android.okhttp.internal.huc.DelegatingHttpsURLConnection.getOutputStream(DelegatingHttpsURLConnection.java:219)
+	at com.android.okhttp.internal.huc.HttpsURLConnectionImpl.getOutputStream(HttpsURLConnectionImpl.java:30)
+	at com.amazonaws.http.UrlHttpClient.writeContentToConnection(SourceFile:6)
+	at com.amazonaws.http.UrlHttpClient.execute(SourceFile:44)
+	at com.amazonaws.http.AmazonHttpClient.executeHelper(SourceFile:417)
+	... 13 more
+
+11:33:57.629 I/ApplicationLogSynchronizationControllerImpl : Fail to send application log 4.0.0_2026_05_05_10_43.txt
+11:33:57.648 E/AfCloudServerApiClient : http://ec2-34-207-57-114.compute-1.amazonaws.com:8080/mobapiauth0/appactivitylog - Unable to resolve host "ec2-34-207-57-114.compute-1.amazonaws.com": No address associated with hostname
+11:33:57.686 I/DjiV2VideoFullFragment : DJIV2CAMERA updatevideofeed DjiV2VideoFullFragment ZV_SONY not ready
+11:33:57.686 I/DjiV2VideoSurfaceView : DJIV2CAMERA updatevideofeed (surfaceHolder is ready but no videofeed ready): surfaceName: DjiV2VideoFullFragment, videoSrcType: PRIMARY, djiVideoIndex: null, component: null, surfaceholder: android.view.SurfaceView$2@dd93fdb
+11:33:57.696 W/WindWorkflowDbg : MISSION_GEN FAIL: selectedWindTurbine is NULL
+11:33:57.697 W/WindWorkflowDbg : MISSION_GEN FAIL: confirmedSettings is NULL (hub not set or settings not built)
+11:33:57.763 I/ApplicationLogSynchronizationControllerImpl : Fail to send application log 4.0.0_2026_05_05_10_43.txt
+11:33:57.763 I/ApplicationLogSynchronizationControllerImpl : Send Application Logs: sending 4.0.0_2026_05_05_10_43.txt logg...
+11:33:57.936 I/DjiV2CameraHandler : DJIV2CAMERA: ZV2 feed initialized: 1 2 3
+11:33:57.936 I/DjiV2CameraHandler : DJIV2CAMERA debounce ZV2 stream not found
+11:33:57.963 I/DjiV2AirLinkHandler : upLinkQuality 100
+11:33:58.060 I/DjiV2PerceptionHandler : VISION_POSITIONING_ENABLED_KEY: true
+11:33:58.061 I/DjiV2GeoFenceHandler : GeoFence -> radius update: 5000.0
+11:33:58.061 I/DjiV2GeoFenceHandler : GeoFence -> radius update: 5000.0
+11:33:58.061 I/DjiV2GeoFenceHandler : GeoFence -> enabled update: false
+11:33:58.061 I/DjiV2GeoFenceHandler : GeoFence -> enabled update: false
+11:33:58.062 I/DjiV2FailsafeHandler : Failsafe -> rcLostAction update: RTH
+11:33:58.062 I/DjiV2FailsafeHandler : Failsafe -> returnToHomeAltitude update: 100.0
+11:33:58.062 I/DjiV2FailsafeHandler : Failsafe -> returnToHomeAltitude update: 100.0
+11:33:58.062 I/DjiV2GeoFenceHandler : GeoFence -> maxAltitude update: 400.0
+11:33:58.063 I/DjiV2GeoFenceHandler : GeoFence -> maxAltitude update: 400.0
+11:33:58.063 I/DjiV2RcHandler : RemoteController flightModeSwitchPosition: SWITCH_ONE
+11:33:58.144 I/DjiV2AirLinkHandler : downLinkQuality 100
+11:33:58.146 I/DjiV2AirLinkHandler : signalQuality: 100
+11:33:58.293 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onAvailableCameraUpdated type RIGHT
+11:33:58.294 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onAvailableCameraUpdated type FPV
+11:33:58.298 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onCameraStreamEnableUpdate type RIGHT, enabled: true
+11:33:58.299 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onCameraStreamEnableUpdate  type RIGHT, enabled: true ChannelPriority HIGHEST
+11:33:58.299 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onCameraStreamEnableUpdate type FPV, enabled: true
+11:33:58.300 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onCameraStreamEnableUpdate  type FPV, enabled: true ChannelPriority MEDIUM
+11:33:58.330 I/DjiV2CameraHandler : DJIV2CAMERA: payload already connected: ZV_SONY
+11:33:58.331 I/DjiV2CameraHandler : DJIV2CAMERA: payload already connected: ZV_SONY
+11:33:58.445 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onCameraStreamEnableUpdate type RIGHT, enabled: true
+11:33:58.445 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onCameraStreamEnableUpdate  type RIGHT, enabled: true ChannelPriority HIGHEST
+11:33:58.445 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onCameraStreamEnableUpdate type FPV, enabled: true
+11:33:58.446 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onCameraStreamEnableUpdate  type FPV, enabled: true ChannelPriority MEDIUM
+11:33:58.647 I/DjiV2RcHandler : RemoteController Firmware Version: 06.02.1312
+11:33:58.728 I/AfOnboardHandler : ZV2 Serial Number: 1423423039817
+11:33:58.948 I/DjiV2CameraHandler : DJIV2CAMERA: ZV2 feed initialized and activated: 1 2 3
+11:33:58.948 I/DjiV2CameraHandler : DJIV2CAMERA: update camera for ZV2 - initialized
+11:33:58.961 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onCameraStreamEnableUpdate type RIGHT, enabled: true
+11:33:58.961 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onCameraStreamEnableUpdate  type RIGHT, enabled: true ChannelPriority HIGHEST
+11:33:58.961 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onCameraStreamEnableUpdate type FPV, enabled: true
+11:33:58.962 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onCameraStreamEnableUpdate  type FPV, enabled: true ChannelPriority MEDIUM
+11:33:58.976 I/DjiV2RcHandler : RemoteController SN: 4LGZLBF007003Q
+11:33:59.949 I/DjiV2CameraHandler : DJIV2CAMERA: update camera for ZV2 - stream enabled - submit event
+11:33:59.959 I/DjiV2VideoFullFragment : DJIV2CAMERA updatevideofeed DjiV2VideoFullFragment updateVideoFeed
+11:33:59.962 I/DjiV2VideoSurfaceView : DJIV2CAMERA updatevideofeed (ok): surfaceName: DjiV2VideoFullFragment, videoSrcType: PRIMARY, djiVideoIndex: RIGHT, component: RIGHT, surfaceholder: android.view.SurfaceView$2@dd93fdb
+11:34:00.026 I/DjiV2GeoFenceHandler : GeoFence -> radius update: 5000.0
+11:34:00.026 I/DjiV2GeoFenceHandler : GeoFence -> enabled update: false
+11:34:00.027 I/DjiV2FailsafeHandler : Failsafe -> returnToHomeAltitude update: 100.0
+11:34:00.027 I/DjiV2GeoFenceHandler : GeoFence -> maxAltitude update: 400.0
+11:34:03.043 I/DjiV2GeoFenceHandler : GeoFence -> radius update: 5000.0
+11:34:03.060 I/DjiV2GeoFenceHandler : GeoFence -> enabled update: false
+11:34:03.060 I/DjiV2FailsafeHandler : Failsafe -> rcLostAction update: RTH
+11:34:03.061 I/DjiV2FailsafeHandler : Failsafe -> returnToHomeAltitude update: 100.0
+11:34:03.062 I/DjiV2GeoFenceHandler : GeoFence -> maxAltitude update: 400.0
+11:34:03.317 I/WindActionsFragment : turbineOpen clicked
+11:34:07.561 I/WindWorkflowControllerImpl : selectWindTurbineSync: SUCCESS - turbine 3.0 from Desfina file is set
+11:34:07.561 I/WindWorkflowControllerBase : State changed to WIND_STAGE_TURBINE_SELECTED
+11:34:07.561 I/WindWorkflowControllerBase : notifyEvent: com.dronebase.af.lib.tools.EVENT_WIND_TURBINE_SELECTED
+11:34:07.579 I/WindTurbineComplex : Turbine name to folder: Desfina-3.0
+11:34:07.580 I/WindTurbineComplex : Turbine name to folder sanitized: Desfina-3.0
+11:34:07.580 W/WindWorkflowDbg : MISSION_GEN FAIL: confirmedSettings is NULL (hub not set or settings not built)
+11:34:08.776 I/WindActionsFragment : turbineConfirm clicked
+11:34:08.777 I/WindWorkflowControllerBase : MissionId generated: 260505-113408777-WTM
+11:34:08.777 I/WindTurbineComplex : Turbine name to folder: Desfina-3.0
+11:34:08.778 I/WindTurbineComplex : Turbine name to folder sanitized: Desfina-3.0
+11:34:08.778 I/ToolWorkflowControllerBase : gimbal 0 mode UNKNOWN
+11:34:08.779 E/DjiV2CameraSettingsController : setPhotoAspectRatio: ERROR - Outside the legal scope.
+11:34:08.782 I/WindWorkflowControllerImpl : checkIfReadyToTakeoffSync: switching to WIND_STAGE_ASCENDING as all good
+11:34:08.783 I/WindWorkflowControllerBase : State changed to WIND_STAGE_ASCENDING
+11:34:08.804 I/WindTurbineComplex : Turbine name to folder: Desfina-3.0
+11:34:08.804 I/WindTurbineComplex : Turbine name to folder sanitized: Desfina-3.0
+11:34:08.804 W/WindWorkflowDbg : MISSION_GEN FAIL: confirmedSettings is NULL (hub not set or settings not built)
+11:34:09.461 I/DjiV2VideoSurfaceView : DJIV2CAMERA updatevideofeed init...
+11:34:09.466 I/DjiV2VideoMiniFragment : DJIV2CAMERA updatevideofeed DjiV2VideoMiniFragment created
+11:34:09.467 I/DjiV2VideoMiniFragment : DJIV2CAMERA updatevideofeed DjiV2VideoMiniFragment updateVideoFeed
+11:34:09.468 W/DjiV2VideoSurfaceView : DJIV2CAMERA updatevideofeed (surfaceHolder is not ready): surfaceName: DjiV2VideoMiniFragment, videoSrcType: SECONDARY, djiVideoIndex: null, component: FPV
+11:34:09.469 I/DjiV2VideoMiniFragment : DJIV2CAMERA updatevideofeed DjiV2VideoMiniFragment updateVideoFeed
+11:34:09.469 W/DjiV2VideoSurfaceView : DJIV2CAMERA updatevideofeed (surfaceHolder is not ready): surfaceName: DjiV2VideoMiniFragment, videoSrcType: SECONDARY, djiVideoIndex: null, component: FPV
+11:34:09.470 I/DjiV2VideoMiniFragment : DJIV2CAMERA updatevideofeed DjiV2VideoMiniFragment updateVideoFeed
+11:34:09.470 W/DjiV2VideoSurfaceView : DJIV2CAMERA updatevideofeed (surfaceHolder is not ready): surfaceName: DjiV2VideoMiniFragment, videoSrcType: SECONDARY, djiVideoIndex: null, component: FPV
+11:34:09.483 I/DjiV2VideoSurfaceView : DJIV2CAMERA updatevideofeed on surfaceCreated!
+11:34:09.484 I/DjiV2VideoSurfaceView : DJIV2CAMERA updatevideofeed onSurfaceTextureAvailable (w=650 h=435)
+11:34:09.490 I/DjiV2VideoSurfaceView : DJIV2CAMERA updatevideofeed (ok): surfaceName: DjiV2VideoMiniFragment, videoSrcType: SECONDARY, djiVideoIndex: null, component: FPV, surfaceholder: android.view.SurfaceView$2@56d7a8b
+11:34:12.045 I/DjiV2StateHandler : State -> armed update: ARMED
+11:34:12.045 I/DjiV2StateHandler : State -> takeoff position update as ARMED: 38.3566779/22.5412543
+11:34:12.046 I/DjiV2StateHandler : State -> controlMode update: GPS_NORMAL -> MOTOR_START
+11:34:12.046 I/DjiV2StateHandler : State -> controlModeAlias update: RTK -> TakeOff
+11:34:12.047 I/LoggerToTimber : DjiV2DroneMainController onVehicleControlModeChangedSync GPS_NORMAL -> MOTOR_START
+11:34:12.047 I/WindWorkflowControllerImpl : onVehicleControlModeChangedSync: reason is NULL, VehicleControlMode is MANUAL, native is MOTOR_START
+11:34:12.048 I/WindWorkflowControllerImpl : VehicleModel - 38.3566779/22.5412543(23) 0.00m att(0.9/0.0/-176.8) Landed battery(96%) gimbal(0.0/0.1/6.3)
+11:34:12.293 I/DjiV2HomeHandler : Home update Lat: 38.3566779 Lon: 22.5412543
+11:34:14.046 I/DjiV2StateHandler : State -> controlMode update: MOTOR_START -> TAKE_OFF_READY
+11:34:14.047 I/LoggerToTimber : DjiV2DroneMainController onVehicleControlModeChangedSync MOTOR_START -> TAKE_OFF_READY
+11:34:14.048 I/WindWorkflowControllerImpl : onVehicleControlModeChangedSync: reason is NULL, VehicleControlMode is MANUAL, native is TAKE_OFF_READY
+11:34:14.049 I/WindWorkflowControllerImpl : VehicleModel - 38.3566778/22.5412544(23) 0.00m att(0.9/0.0/-176.7) Landed battery(96%) gimbal(0.0/0.1/6.4)
+11:34:15.746 I/WindWorkflowControllerImpl : onVehicleControlModeChangedSync: reason is TAKEOFF, VehicleControlMode is MANUAL, native is TAKE_OFF_READY
+11:34:15.747 I/WindWorkflowControllerImpl : VehicleModel - 38.3566780/22.5412546(23) 0.00m att(-0.3/-0.8/-174.9) Flying battery(96%) gimbal(-0.1/0.1/7.0)
+11:34:15.798 I/DjiV2StateHandler : State -> controlMode update: TAKE_OFF_READY -> GPS_NORMAL
+11:34:15.798 I/DjiV2StateHandler : State -> controlModeAlias update: TakeOff -> RTK
+11:34:15.800 I/LoggerToTimber : DjiV2DroneMainController onVehicleControlModeChangedSync TAKE_OFF_READY -> GPS_NORMAL
+11:34:15.801 I/WindWorkflowControllerImpl : onVehicleControlModeChangedSync: reason is NULL, VehicleControlMode is MANUAL, native is GPS_NORMAL
+11:34:15.801 I/WindWorkflowControllerImpl : VehicleModel - 38.3566780/22.5412547(23) 0.00m att(-1.0/-0.3/-174.1) Flying battery(96%) gimbal(-0.1/0.1/7.0)
+11:34:17.745 I/DjiV2EnvironmentHandler : WindSpeed update: 0.0
+11:34:17.746 I/DjiV2EnvironmentHandler : WindDirection update: SOUTH_WEST
+11:34:18.100 I/DjiV2EnvironmentHandler : WindSpeed update: 0.1
+11:34:18.594 I/DjiV2EnvironmentHandler : WindSpeed update: 0.2
+11:34:18.894 I/DjiV2EnvironmentHandler : WindDirection update: WEST
+11:34:19.093 I/DjiV2EnvironmentHandler : WindSpeed update: 0.3
+11:34:19.429 I/DjiV2EnvironmentHandler : WindSpeed update: 0.4
+11:34:19.729 I/DjiV2EnvironmentHandler : WindSpeed update: 0.5
+11:34:20.094 I/DjiV2EnvironmentHandler : WindSpeed update: 0.6
+11:34:20.430 I/DjiV2EnvironmentHandler : WindSpeed update: 0.7
+11:34:20.727 I/DjiV2EnvironmentHandler : WindSpeed update: 0.8
+11:34:21.095 I/DjiV2EnvironmentHandler : WindSpeed update: 0.9
+11:34:21.431 I/DjiV2EnvironmentHandler : WindSpeed update: 1.0
+11:34:21.797 I/DjiV2EnvironmentHandler : WindSpeed update: 1.1
+11:34:22.146 I/DjiV2EnvironmentHandler : WindSpeed update: 1.2
+11:34:22.710 I/DjiV2EnvironmentHandler : WindSpeed update: 1.3
+11:34:23.011 I/DjiV2EnvironmentHandler : WindSpeed update: 1.4
+11:34:23.294 I/DjiV2EnvironmentHandler : WindSpeed update: 1.5
+11:34:23.732 I/DjiV2EnvironmentHandler : WindSpeed update: 1.6
+11:34:24.110 I/DjiV2EnvironmentHandler : WindSpeed update: 1.7
+11:34:24.596 I/DjiV2EnvironmentHandler : WindSpeed update: 1.8
+11:34:25.110 I/DjiV2EnvironmentHandler : WindSpeed update: 1.9
+11:34:26.212 I/DjiV2EnvironmentHandler : WindSpeed update: 2.0
+11:34:27.427 I/DjiV2EnvironmentHandler : WindSpeed update: 2.1
+11:34:28.153 I/DjiV2VideoSurfaceView : DJIV2CAMERA updatevideofeed (surface removed with placing video): surfaceName: DjiV2VideoMiniFragment, djiVideoIndex: null, surfaceholder: android.view.SurfaceView$2@56d7a8b
+11:34:36.662 I/DjiV2AirLinkHandler : downLinkQuality 80
+11:34:36.663 I/DjiV2AirLinkHandler : signalQuality: 100
+11:34:36.663 I/DjiV2AirLinkHandler : signalQuality: 80
+11:34:37.809 I/DjiV2EnvironmentHandler : WindSpeed update: 2.2
+11:34:38.278 I/DjiV2EnvironmentHandler : WindSpeed update: 2.3
+11:34:38.927 I/DjiV2EnvironmentHandler : WindSpeed update: 2.4
+11:34:40.096 I/DjiV2EnvironmentHandler : WindSpeed update: 2.5
+11:34:41.946 I/DjiV2AirLinkHandler : downLinkQuality 100
+11:34:41.947 I/DjiV2AirLinkHandler : signalQuality: 80
+11:34:41.948 I/DjiV2AirLinkHandler : signalQuality: 100
+11:34:43.184 I/DjiV2AirLinkHandler : downLinkQuality 80
+11:34:43.185 I/DjiV2AirLinkHandler : signalQuality: 100
+11:34:43.185 I/DjiV2AirLinkHandler : signalQuality: 80
+11:34:43.897 I/DjiV2EnvironmentHandler : WindSpeed update: 2.6
+11:34:46.396 I/DjiV2EnvironmentHandler : WindSpeed update: 2.7
+11:34:47.894 I/DjiV2EnvironmentHandler : WindSpeed update: 2.8
+11:34:49.545 I/DjiV2EnvironmentHandler : WindSpeed update: 2.9
+11:34:52.663 I/DjiV2AirLinkHandler : downLinkQuality 100
+11:34:52.664 I/DjiV2AirLinkHandler : signalQuality: 80
+11:34:52.710 I/DjiV2AirLinkHandler : signalQuality: 100
+11:34:57.429 I/DjiV2EnvironmentHandler : WindSpeed update: 3.0
+11:34:58.428 I/DjiV2EnvironmentHandler : WindSpeed update: 2.9
+11:34:58.727 I/DjiV2EnvironmentHandler : WindSpeed update: 2.8
+11:34:59.112 I/DjiV2EnvironmentHandler : WindSpeed update: 2.7
+11:34:59.695 I/DjiV2AirLinkHandler : downLinkQuality 80
+11:34:59.696 I/DjiV2AirLinkHandler : signalQuality: 100
+11:34:59.710 I/DjiV2AirLinkHandler : signalQuality: 80
+11:35:02.199 I/DjiV2EnvironmentHandler : WindSpeed update: 2.6
+11:35:03.294 I/DjiV2EnvironmentHandler : WindSpeed update: 2.7
+11:35:05.929 I/DjiV2StateHandler : State -> controlModeAlias update: RTK -> P-GPS
+11:35:06.710 I/DjiV2AirLinkHandler : downLinkQuality 100
+11:35:06.711 I/DjiV2AirLinkHandler : signalQuality: 80
+11:35:06.712 I/DjiV2AirLinkHandler : signalQuality: 100
+11:35:07.495 I/DjiV2StateHandler : State -> controlMode update: GPS_NORMAL -> FORCE_LANDING
+11:35:07.496 I/DjiV2StateHandler : State -> controlModeAlias update: P-GPS -> ForceLanding
+11:35:07.497 I/LoggerToTimber : DjiV2DroneMainController onVehicleControlModeChangedSync GPS_NORMAL -> FORCE_LANDING
+11:35:07.512 I/WindWorkflowControllerImpl : onVehicleControlModeChangedSync: reason is GO_HOME, VehicleControlMode is AUTO_GO_HOME, native is FORCE_LANDING
+11:35:07.512 I/WindWorkflowControllerImpl : VehicleModel - 38.3550049/22.5421624(21) 51.60m att(54.1/-18.3/-174.1) Flying battery(93%) gimbal(60.5/20.9/1399.0)
+11:35:07.513 I/WindWorkflowControllerBase : State changed to WIND_STAGE_GOING_HOME
+11:35:08.495 I/DjiV2StateHandler : State -> controlMode update: FORCE_LANDING -> ATTI
+11:35:08.496 I/DjiV2StateHandler : State -> controlModeAlias update: ForceLanding -> P-Atti
+11:35:08.496 I/LoggerToTimber : DjiV2DroneMainController onVehicleControlModeChangedSync FORCE_LANDING -> ATTI
+11:35:08.496 I/DjiV2EnvironmentHandler : WindSpeed update: 2.8
+11:35:08.497 I/DjiV2EnvironmentHandler : WindDirection update: WINDLESS
+11:35:08.498 I/WindWorkflowControllerImpl : onVehicleControlModeChangedSync: reason is NULL, VehicleControlMode is MANUAL, native is ATTI
+11:35:08.499 I/WindWorkflowControllerImpl : VehicleModel - 38.3550007/22.5422522(22) 37.10m att(-31.5/28.3/-48.6) Flying battery(92%) gimbal(160.1/62.3/1787.9)
+11:35:08.499 I/WindWorkflowControllerImpl : onRthCanceledSync...
+11:35:08.499 I/WindWorkflowControllerBase : State changed to WIND_STAGE_NONE
+11:35:11.195 I/DjiV2AirLinkHandler : downLinkQuality 80
+11:35:11.196 I/DjiV2AirLinkHandler : signalQuality: 100
+11:35:11.197 I/DjiV2AirLinkHandler : signalQuality: 80
+11:35:12.549 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onAvailableCameraUpdated type FPV
+11:35:12.550 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onCameraStreamEnableUpdate type FPV, enabled: true
+11:35:12.550 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onCameraStreamEnableUpdate  type FPV, enabled: true ChannelPriority MEDIUM
+11:35:12.714 I/DjiV2AirLinkHandler : downLinkQuality 60
+11:35:12.715 I/DjiV2AirLinkHandler : signalQuality: 80
+11:35:12.716 I/DjiV2AirLinkHandler : signalQuality: 60
+11:35:13.200 I/DjiV2AirLinkHandler : downLinkQuality 17
+11:35:13.202 I/DjiV2AirLinkHandler : signalQuality: 60
+11:35:13.203 I/DjiV2AirLinkHandler : signalQuality: 20
+11:35:13.947 I/DjiV2AirLinkHandler : downLinkQuality 0
+11:35:13.952 I/DjiV2AirLinkHandler : signalQuality: 20
+11:35:13.954 I/DjiV2AirLinkHandler : signalQuality: 0
+11:35:14.936 I/DjiV2CameraHandler : DJIV2CAMERA: payload report status productName:null isConnected:false getPayloadType:null index:RIGHT
+11:35:15.933 I/DjiV2CameraHandler : DJIV2CAMERA: update camera for ZV2 - deactivated
+11:35:15.934 I/DjiV2CameraHandler : DJIV2CAMERA: update camera for ZV2 - disable stream
+11:35:15.954 I/DjiV2VideoFullFragment : DJIV2CAMERA updatevideofeed DjiV2VideoFullFragment ZV_SONY not ready
+11:35:15.956 I/DjiV2VideoSurfaceView : DJIV2CAMERA updatevideofeed videofeed placed, removing: surfaceName: DjiV2VideoFullFragment, videoSrcType: PRIMARY, djiVideoIndex: null, component: null, surfaceholder: android.view.SurfaceView$2@dd93fdb
+11:35:17.473 I/DjiV2CameraHandler : DJIV2CAMERA: payload report status productName:null isConnected:false getPayloadType:null index:LEFT_OR_MAIN
+11:35:17.474 I/DjiV2CameraHandler : DJIV2CAMERA: payload report status productName:null isConnected:false getPayloadType:null index:RIGHT
+11:35:17.479 I/DjiV2VehicleManagerImpl : DJISDKManager -> ProductType: M300_RTK - UNRECOGNIZED
+11:35:17.480 I/DjiV2VehicleManagerImpl : DJISDKManager Unknown product type
+11:35:17.481 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onCameraStreamEnableUpdate type FPV, enabled: true
+11:35:17.482 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onCameraStreamEnableUpdate  type FPV, enabled: true ChannelPriority MEDIUM
+11:35:17.483 I/DjiV2VehicleManagerImpl : DJISDKManager -> SerialNumber: 1ZN3K84001P04Z - NULL
+11:35:17.483 I/DjiV2VehicleManagerImpl : Tear Down All Key Listeners...
+11:35:17.487 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onCameraStreamEnableUpdate type FPV, enabled: true
+11:35:17.487 I/DjiV2CameraHandler : DJIV2CAMERA updatedCameraListener onCameraStreamEnableUpdate  type FPV, enabled: true ChannelPriority MEDIUM
+11:35:17.519 I/DjiV2VideoFullFragment : DJIV2CAMERA updatevideofeed DjiV2VideoFullFragment vm is null
+11:35:17.520 I/WindWorkflowControllerImpl : onVehicleConnectionChangedSync: Vehicle is Disconnected
+11:35:33.593 I/DjiV2VehicleManagerImpl : DJISDKManager -> ProductType: UNRECOGNIZED - M300_RTK
+11:35:33.594 I/DjiV2VehicleManagerImpl : DJISDKManager: Aircraft not connected
+11:35:34.194 I/DjiV2MoveController : onVirtualStickStateUpdate: enabled = false, advanced = false, auth = UNKNOWN
+11:35:43.881 I/DjiV2VideoFullFragment : DJIV2CAMERA updatevideofeed DjiV2VideoFullFragment vm is null
+11:35:43.882 I/DjiV2VideoFullFragment : DJIV2CAMERA updatevideofeed DjiV2VideoFullFragment vm is null
+11:35:43.931 I/DjiV2VideoSurfaceView : DJIV2CAMERA updatevideofeed (surface removed without placing): surfaceName: DjiV2VideoFullFragment, djiVideoIndex: null, surfaceholder: android.view.SurfaceView$2@dd93fdb

@@ -1,0 +1,157 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: #e5e7eb;
+}
+
+.topbar {
+    height: 60px;
+    background: #111827;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    border-bottom: 1px solid #1f2937;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.back-link {
+    color: #38bdf8;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    height: calc(100vh - 60px);
+}
+
+.sidebar {
+    background: #020617;
+    padding: 20px;
+    border-right: 1px solid #1f2937;
+    overflow-y: auto;
+}
+
+.card {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.card h3 {
+    margin-top: 0;
+    font-size: 15px;
+    color: #93c5fd;
+}
+
+.stat {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.stat span:last-child {
+    font-weight: bold;
+    color: white;
+}
+
+.main {
+    display: grid;
+    grid-template-rows: minmax(420px, 65%) 35%;
+    min-width: 0;
+    height: calc(100vh - 60px);
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    background: #111827;
+}
+
+.table-wrap {
+    overflow: auto;
+    background: #020617;
+    border-top: 1px solid #1f2937;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    color: #e5e7eb;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    background: #111827;
+    color: #93c5fd;
+    padding: 10px;
+    border-bottom: 1px solid #334155;
+}
+
+td {
+    padding: 9px 10px;
+    border-bottom: 1px solid #1f2937;
+}
+
+tr:hover {
+    background: #1e293b;
+}
+
+.badge {
+    display: inline-block;
+    background: #064e3b;
+    color: #6ee7b7;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+}
+
+.replay-button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #38bdf8;
+    color: #0f172a;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.2s;
+}
+
+.replay-button:hover {
+    background: #0ea5e9;
+}
+
+.leaflet-popup-content-wrapper {
+    background: #111827;
+    color: white;
+    border-radius: 10px;
+}
+
+.leaflet-popup-tip {
+    background: #111827;
+}
+
+@media (max-width: 900px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: none;
+    }
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <title>Encrypted DJI Log</title>
+</head>
+<body>
+    <h1>Encrypted DJI log</h1>
+
+    <p>Αρχείο: <strong>{{ filename }}</strong></p>
+
+    <p>
+        Το αρχείο είναι DJI binary/encrypted log και δεν μπορεί να διαβαστεί
+        σαν απλό txt.
+    </p>
+
+    {% if message %}
+        <p><strong>Error:</strong> {{ message }}</p>
+    {% endif %}
+
+    <p>
+        Χρειάζεται DJI decoder ή export σε CSV από PhantomHelp/AirData.
+    </p>
+
+    <a href="/">Πίσω</a>
+</body>
+</html>

@@ -1,0 +1,18 @@
+[
+    {
+      "time": "0",
+      "latitude": 37.9838,
+      "longitude": 23.7275,
+      "altitude": 30,
+      "speed": 5,
+      "battery": 98
+    },
+    {
+      "time": "1",
+      "latitude": 37.9842,
+      "longitude": 23.728,
+      "altitude": 31,
+      "speed": 6,
+      "battery": 97
+    }
+  ]
