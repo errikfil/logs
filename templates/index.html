@@ -2,72 +2,84 @@
 <html lang="el">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drone Log Viewer</title>
 
-    <style>
-        body{
-            font-family: Arial, sans-serif;
-            background:#f4f4f4;
-            margin:0;
-            padding:40px;
-        }
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}?v=2"></head>
 
-        .container{
-            background:white;
-            padding:30px;
-            border-radius:10px;
-            max-width:700px;
-            margin:auto;
-            box-shadow:0 0 10px rgba(0,0,0,0.1);
-        }
-
-        h1{
-            margin-top:0;
-        }
-
-        form{
-            margin-top:20px;
-        }
-
-        button{
-            background:#007bff;
-            color:white;
-            border:none;
-            padding:10px 20px;
-            border-radius:5px;
-            cursor:pointer;
-        }
-
-        button:hover{
-            background:#0056b3;
-        }
-
-        input[type="file"]{
-            margin-bottom:20px;
-        }
-    </style>
-</head>
 <body>
 
-<div class="container">
+<div class="page">
 
-    <h1>🚁 Drone Log Viewer</h1>
+    <header class="hero">
+        <h1>Drone Log Viewer</h1>
+        <p>
+            Ανέβασε αρχείο πτήσης και δες τη διαδρομή, ταχύτητα,
+            υψόμετρο, μπαταρία και replay πάνω στον χάρτη.
+        </p>
+    </header>
 
-    <p>Ανέβασε DJI log αρχείο</p>
+    <main class="upload-card">
 
-    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <form action="/upload" method="POST" enctype="multipart/form-data" class="upload-form">
 
-        <input type="file" name="logfile">
+            <label class="drop-zone" for="logfile">
+        
+                <h2>Upload flight log</h2>
 
-        <br>
+                <p>
+                    Υποστηρίζονται αρχεία
+                    <strong>CSV</strong>,
+                    <strong>JSON</strong>,
+                    <strong>TXT</strong>
+                </p>
 
-        <button type="submit">
-            Upload Log
-        </button>
+                <span id="fileName" class="file-name">Δεν έχει επιλεγεί αρχείο</span>
 
-    </form>
+                <input id="logfile" type="file" name="logfile" accept=".csv,.json,.txt" required>
+            </label>
+
+            <button type="submit" class="upload-btn">
+                Upload
+            </button>
+
+        </form>
+
+        <section class="info-grid">
+            <div class="info-box">
+                <h3>Map Route</h3>
+                <p>Εμφάνιση της διαδρομής πάνω σε χάρτη.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Flight Stats</h3>
+                <p>Υψόμετρο, ταχύτητα, μπαταρία και συνολική απόσταση.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Replay</h3>
+                <p>Αναπαραγωγή της πτήσης με κινούμενο drone marker.</p>
+            </div>
+        </section>
+
+    </main>
 
 </div>
+
+<script>
+    const input = document.getElementById("logfile");
+    const fileName = document.getElementById("fileName");
+
+    input.addEventListener("change", () => {
+        if (input.files.length > 0) {
+            fileName.textContent = input.files[0].name;
+            fileName.classList.add("selected");
+        } else {
+            fileName.textContent = "Δεν έχει επιλεγεί αρχείο";
+            fileName.classList.remove("selected");
+        }
+    });
+</script>
 
 </body>
 </html>

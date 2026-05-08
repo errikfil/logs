@@ -1,95 +1,131 @@
-body {
+* {
+    box-sizing: border-box;
+}
+
+html, body {
     margin: 0;
+    height: 100%;
     font-family: Arial, sans-serif;
-    background: #0f172a;
+    background: #020617;
     color: #e5e7eb;
+    overflow: hidden;
 }
 
 .topbar {
-    height: 60px;
-    background: #111827;
+    height: 64px;
+    background: #0f172a;
+    border-bottom: 1px solid #1e293b;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 24px;
-    border-bottom: 1px solid #1f2937;
 }
 
 .title {
     font-size: 18px;
     font-weight: bold;
+    color: white;
 }
 
 .back-link {
     color: #38bdf8;
     text-decoration: none;
     font-size: 14px;
+    font-weight: bold;
 }
 
 .dashboard {
+    height: calc(100vh - 64px);
     display: grid;
-    grid-template-columns: 320px 1fr;
-    height: calc(100vh - 60px);
+    grid-template-columns: 300px 1fr;
 }
 
 .sidebar {
     background: #020617;
-    padding: 20px;
-    border-right: 1px solid #1f2937;
+    border-right: 1px solid #1e293b;
+    padding: 16px;
     overflow-y: auto;
 }
 
 .card {
-    background: #111827;
-    border: 1px solid #1f2937;
-    border-radius: 12px;
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 14px;
     padding: 16px;
     margin-bottom: 16px;
 }
 
 .card h3 {
-    margin-top: 0;
+    margin: 0 0 14px;
     font-size: 15px;
     color: #93c5fd;
+}
+
+.card p {
+    margin: 0 0 12px;
+    color: white;
+    font-weight: bold;
+    word-break: break-word;
+}
+
+.badge {
+    display: inline-block;
+    background: #064e3b;
+    color: #6ee7b7;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.card button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #38bdf8;
+    color: #020617;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .stat {
     display: flex;
     justify-content: space-between;
-    margin: 10px 0;
+    gap: 12px;
+    margin: 12px 0;
     font-size: 14px;
+    color: #cbd5e1;
 }
 
 .stat span:last-child {
-    font-weight: bold;
     color: white;
+    font-weight: bold;
 }
 
 .main {
+    height: calc(100vh - 64px);
     display: grid;
-    grid-template-rows: minmax(420px, 65%) 35%;
+    grid-template-rows: minmax(0, 1fr) 260px;
     min-width: 0;
-    height: calc(100vh - 60px);
 }
 
 #map {
     width: 100%;
     height: 100%;
-    min-height: 420px;
     background: #111827;
 }
 
 .table-wrap {
-    overflow: auto;
     background: #020617;
-    border-top: 1px solid #1f2937;
+    border-top: 1px solid #1e293b;
+    overflow: auto;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     font-size: 13px;
-    color: #e5e7eb;
 }
 
 th {
@@ -97,43 +133,20 @@ th {
     top: 0;
     background: #111827;
     color: #93c5fd;
-    padding: 10px;
+    padding: 11px;
     border-bottom: 1px solid #334155;
+    z-index: 2;
 }
 
 td {
-    padding: 9px 10px;
-    border-bottom: 1px solid #1f2937;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #1e293b;
+    color: #e5e7eb;
 }
 
 tr:hover {
-    background: #1e293b;
-}
-
-.badge {
-    display: inline-block;
-    background: #064e3b;
-    color: #6ee7b7;
-    padding: 5px 10px;
-    border-radius: 999px;
-    font-size: 12px;
-}
-
-.replay-button {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 10px;
-    background: #38bdf8;
-    color: #0f172a;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 15px;
-    transition: 0.2s;
-}
-
-.replay-button:hover {
-    background: #0ea5e9;
+    background: #111827;
 }
 
 .leaflet-popup-content-wrapper {
@@ -147,11 +160,50 @@ tr:hover {
 }
 
 @media (max-width: 900px) {
+    body {
+        overflow: auto;
+    }
+
     .dashboard {
-        grid-template-columns: 1fr;
+        display: block;
+        height: auto;
     }
 
     .sidebar {
-        display: none;
+        border-right: none;
+        border-bottom: 1px solid #1e293b;
     }
+
+    .main {
+        height: 700px;
+        grid-template-rows: 450px 250px;
+    }
+}
+.replay-controls {
+    display: grid;
+    grid-template-columns: 1fr 90px;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.replay-controls button {
+    border: none;
+    border-radius: 10px;
+    padding: 11px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#playPauseBtn {
+    background: #38bdf8;
+    color: #020617;
+}
+
+#resetBtn {
+    background: #1e293b;
+    color: white;
+}
+
+#resetBtn:hover {
+    background: #334155;
 }

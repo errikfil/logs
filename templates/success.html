@@ -9,8 +9,7 @@
         <link rel="stylesheet"
               href="https://unpkg.com/leaflet/dist/leaflet.css">
     
-        <link rel="stylesheet"
-              href="{{ url_for('static', filename='css/style.css') }}">
+              <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=100">
     
         <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     </head>
@@ -30,18 +29,17 @@
             <span class="badge">CSV loaded</span>
 
             <br><br>
-            <button onclick="startReplay()" style="
-                width:100%;
-                padding:10px;
-                border:none;
-                border-radius:8px;
-                background:#38bdf8;
-                color:#020617;
-                font-weight:bold;
-                cursor:pointer;
-            ">
-                ▶ Replay Flight
-            </button>
+            <div class="replay-controls">
+
+                <button id="playPauseBtn" onclick="toggleReplay()">
+                    ▶ Play
+                </button>
+                <br><br>
+                <button id="resetBtn" onclick="resetReplay()">
+                    ↺ Reset
+                </button>
+            
+            </div>
         </div>
 
         <div class="card">
@@ -71,15 +69,15 @@
         <div class="card">
             <h3>Legend</h3>
             <div class="stat">
-                <span>🟢 Start</span>
+                <span>Start</span>
                 <span>Takeoff</span>
             </div>
             <div class="stat">
-                <span>🔴 End</span>
+                <span>End</span>
                 <span>Landing</span>
             </div>
             <div class="stat">
-                <span>🟥 Line</span>
+                <span>Line</span>
                 <span>Route</span>
             </div>
         </div>
@@ -122,7 +120,6 @@
     window.flightData = {{ flight_data | tojson | safe }};
 </script>
 
-<script src="{{ url_for('static', filename='js/viewer.js') }}?v=2"></script>
-
+<script src="{{ url_for('static', filename='js/viewer.js') }}?v=200"></script>
 </body>
 </html>
