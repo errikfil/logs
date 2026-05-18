@@ -1,43 +1,28 @@
 import os
-import subprocess
-
+from pathlib import Path
+from decoders.dji_log_parser import DJILogParser
+from decoders.csv_decoder import decode_csv
 
 CONVERTED_FOLDER = "converted"
 
 
-def decode_dji_encrypted_txt(filepath, filename):
+def decode_dji_encrypted(filepath):
     os.makedirs(CONVERTED_FOLDER, exist_ok=True)
 
-    output_csv = os.path.join(
-        CONVERTED_FOLDER,
-        os.path.splitext(filename)[0] + ".csv"
-    )
+    output_name = Path(filepath).stem + ".csv"
+    output_path = os.path.join(CONVERTED_FOLDER, output_name)
 
-    command = [
-        "./dji-log",
-        filepath,
-        "-c",
-        output_csv
-    ]
+    parser = DJILogParser()
+    success = parser.parse_file(filepath)
 
-    try:
-        result = subprocess.run(
-            command,
-            capture_output=True,
-            text=True,
-            timeout=120
-        )
+    if not success:
+        return []
 
-        if result.returncode != 0:
-            raise Exception(result.stderr or result.stdout)
+    parser.export_csv(output_path)
 
-        if not os.path.exists(output_csv):
-            raise Exception("Ο decoder δεν δημιούργησε CSV αρχείο.")
+    if not os.path.exists(output_path):
+        return []
 
-        return output_csv
+    print("Decoded CSV saved at:", output_path)
 
-    except Exception as error:
-        raise Exception(
-            "Το DJI αρχείο είναι encrypted και δεν μπορεί να διαβαστεί χωρίς "
-            f"κανονικό DJI decoder/API key. Λεπτομέρειες: {error}"
-        )
+    return decode_csv(output_path)

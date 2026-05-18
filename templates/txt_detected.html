@@ -2,26 +2,56 @@
 <html lang="el">
 <head>
     <meta charset="UTF-8">
-    <title>Encrypted DJI Log</title>
+    <title>TXT Decoded</title>
+
+    <style>
+        body{
+            font-family:Arial;
+            background:#f3f4f6;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            min-height:100vh;
+        }
+
+        .box{
+            background:white;
+            padding:40px;
+            border-radius:12px;
+            width:500px;
+            text-align:center;
+        }
+
+        .btn{
+            display:block;
+            margin-top:15px;
+            padding:14px;
+            background:#111827;
+            color:white;
+            text-decoration:none;
+            border-radius:8px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Encrypted DJI log</h1>
 
-    <p>Αρχείο: <strong>{{ filename }}</strong></p>
+<div class="box">
 
-    <p>
-        Το αρχείο είναι DJI binary/encrypted log και δεν μπορεί να διαβαστεί
-        σαν απλό txt.
-    </p>
+    <h1>TXT αποκωδικοποιήθηκε</h1>
 
-    {% if message %}
-        <p><strong>Error:</strong> {{ message }}</p>
-    {% endif %}
+    <p>{{ original_filename }}</p>
 
-    <p>
-        Χρειάζεται DJI decoder ή export σε CSV από PhantomHelp/AirData.
-    </p>
+    <a class="btn"
+       href="/download/{{ decoded_filename }}">
+       Download Decoded CSV
+    </a>
 
-    <a href="/">Πίσω</a>
+    <a class="btn"
+       href="/view/{{ decoded_filename }}">
+       View Flight Map
+    </a>
+
+</div>
+
 </body>
 </html>

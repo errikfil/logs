@@ -6,12 +6,11 @@
     
         <title>Flight Viewer</title>
     
-        <link rel="stylesheet"
-              href="https://unpkg.com/leaflet/dist/leaflet.css">
-    
-              <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=100">
-    
-        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=305">
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
 <body>
 
@@ -31,15 +30,33 @@
             <br><br>
             <div class="replay-controls">
 
-                <button id="playPauseBtn" onclick="toggleReplay()">
-                    ▶ Play
-                </button>
-                <br><br>
-                <button id="resetBtn" onclick="resetReplay()">
-                    ↺ Reset
-                </button>
+                <div class="replay-buttons">
+                    <button id="playPauseBtn">
+                        ▶ Play
+                    </button>
+            
+                    <button id="resetBtn">
+                        ↺ Reset
+                    </button>
+                </div>
+            
+                <div class="replay-slider-box">
+                    <input 
+                        type="range" 
+                        id="replaySlider" 
+                        min="0" 
+                        max="{{ flight_data|length - 1 }}" 
+                        value="0"
+                    >
+            
+                    <div class="replay-slider-info">
+                        <span id="replayCurrent">0</span>
+                        <span>/ {{ flight_data|length - 1 }}</span>
+                    </div>
+                </div>
             
             </div>
+            
         </div>
 
         <div class="card">
@@ -67,46 +84,116 @@
         </div>
 
         <div class="card">
-            <h3>Legend</h3>
+            <h3>Live Telemetry</h3>
+        
             <div class="stat">
-                <span>Start</span>
-                <span>Takeoff</span>
+                <span>Altitude</span>
+                <span id="liveAltitude">0 m</span>
             </div>
+        
             <div class="stat">
-                <span>End</span>
-                <span>Landing</span>
+                <span>Speed</span>
+                <span id="liveSpeed">0 km/h</span>
             </div>
+        
             <div class="stat">
-                <span>Line</span>
-                <span>Route</span>
+                <span>Battery</span>
+                <span id="liveBattery">0%</span>
+            </div>
+        
+            <div class="stat">
+                <span>Coordinates</span>
+                <span id="liveCoords">-</span>
             </div>
         </div>
+        <div class="card">
+            <h3>Flight Analytics</h3>
+        
+            <div class="stat">
+                <span>Total Distance</span>
+                <span id="totalDistance">-</span>
+            </div>
+        
+            <div class="stat">
+                <span>Average Speed</span>
+                <span id="avgSpeed">-</span>
+            </div>
+        
+            <div class="stat">
+                <span>Battery Used</span>
+                <span id="batteryUsed">-</span>
+            </div>
+        </div>
+
+    
     </aside>
 
     <main class="main">
-        <div id="map"></div>
-
+        <div class="map-wrapper">
+            <div id="map"></div>
+        
+            <div class="phantom-controls">
+                <div class="radar-ball">
+                    <div class="radar-line"></div>
+                    <div class="radar-fill"></div>
+                </div>
+        
+                <div class="stick-row">
+                    <div class="phantom-stick-box">
+                        <div id="phantomLeftStick" class="phantom-stick-dot yellow"></div>
+                    </div>
+                    
+                    <div class="phantom-stick-box">
+                        <div id="phantomRightStick" class="phantom-stick-dot red"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    
+        
         <div class="table-wrap">
             <table>
                 <thead>
                     <tr>
+                        <th>Log #</th>
                         <th>Time</th>
-                        <th>Latitude</th>
-                        <th>Longitude</th>
-                        <th>Altitude</th>
+                        <th>Flight Mode</th>
+                        <th>GPS</th>
+                        <th>IMU Altitude</th>
+                        <th>VPS Altitude</th>
                         <th>Speed</th>
+                        <th>Home Distance</th>
                         <th>Battery</th>
+                        <th>Battery Voltage</th>
+                        <th>Cell 1</th>
+                        <th>Cell 2</th>
+                        <th>Cell 3</th>
+                        <th>Cell 4</th>
+                        <th>Cell Deviation</th>
+                        <th>Message</th>
                     </tr>
                 </thead>
+                
                 <tbody>
                     {% for point in flight_data %}
-                    <tr>
+                    <tr class="log-row" data-index="{{ loop.index0 }}">
+                        <td>{{ loop.index0 }}</td>
                         <td>{{ point.time }}</td>
-                        <td>{{ point.latitude }}</td>
-                        <td>{{ point.longitude }}</td>
-                        <td>{{ point.altitude }}</td>
+                        <td>{{ point.flight_mode }}</td>
+                        <td>{{ point.gps }}</td>
+                        <td>{{ point.imu_altitude }}</td>
+                        <td>{{ point.vps_altitude }}</td>
                         <td>{{ point.speed }}</td>
-                        <td>{{ point.battery }}%</td>
+                        <td>{{ point.home_distance }}</td>
+                        <td>{{ point.battery }}</td>
+                        <td>{{ point.battery_voltage }}</td>
+                        <td>{{ point.cell_1 }}</td>
+                        <td>{{ point.cell_2 }}</td>
+                        <td>{{ point.cell_3 }}</td>
+                        <td>{{ point.cell_4 }}</td>
+                        <td>{{ point.cell_deviation }}</td>
+                        <td class="message-cell">{{ point.message }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -120,6 +207,6 @@
     window.flightData = {{ flight_data | tojson | safe }};
 </script>
 
-<script src="{{ url_for('static', filename='js/viewer.js') }}?v=200"></script>
+<script src="{{ url_for('static', filename='js/viewer.js') }}?v=10009"></script>
 </body>
 </html>

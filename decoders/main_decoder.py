@@ -2,6 +2,7 @@ from decoders.detector import detect_file_type
 from decoders.csv_decoder import decode_csv
 from decoders.json_decoder import decode_json
 from decoders.txt_decoder import decode_txt_plain
+from decoders.dji_encrypted_decoder import decode_dji_encrypted
 
 
 def decode_log_file(filepath):
@@ -29,11 +30,20 @@ def decode_log_file(filepath):
         }
 
     if file_type == "dji_encrypted":
+        data = decode_dji_encrypted(filepath)
+
+        if len(data) == 0:
+            return {
+                "status": "error",
+                "type": "dji_encrypted",
+                "data": [],
+                "message": "Δεν μπόρεσε να γίνει αποκωδικοποίηση του DJI encrypted αρχείου."
+            }
+
         return {
-            "status": "encrypted",
+            "status": "success",
             "type": "dji_encrypted",
-            "data": [],
-            "message": "Το αρχείο είναι DJI encrypted/binary TXT και χρειάζεται εξωτερικό DJI decoder."
+            "data": data
         }
 
     return {
