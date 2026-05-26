@@ -167,6 +167,7 @@ class XorDecoder:
     """XOR decoder using CRC64-Jones"""
 
     def __init__(self, data: bytes, record_type: int):
+        
         if len(data) < 1:
             self.decoded = bytes()
             return
@@ -186,8 +187,91 @@ class XorDecoder:
 
 class DJILogParser:
     PREFIX_SIZE = 100
+    def _get_time_candidates_from_osd(self, data: bytes):
+        candidates = {}
+
+        for offset in range(30, len(data) - 4):
+            value = struct.unpack('<I', data[offset:offset + 4])[0]
+
+            # DJI flight time συνήθως σε milliseconds
+            if 0 <= value <= 3 * 60 * 60 * 1000:
+                candidates[offset] = value
+
+        return candidates
 
 
+    def _assign_real_times_to_frames(self):
+        if not self.frames or not self.osd_time_candidates:
+            return
+
+        best_offset = None
+        best_score = -999999
+
+        offsets = set()
+
+        for candidate in self.osd_time_candidates:
+            offsets.update(candidate.keys())
+
+        for offset in offsets:
+            values = []
+
+            for candidate in self.osd_time_candidates:
+                if offset in candidate:
+                    values.append(candidate[offset])
+
+            if len(values) < 100:
+                continue
+
+            score = 0
+
+            for i in range(1, len(values)):
+                diff = values[i] - values[i - 1]
+
+                # Θέλουμε strictly increasing timestamps
+                if 0 <= diff <= 2000:
+                    score += 5
+                else:
+                    score -= 100
+
+            # bonus αν αρχίζει κοντά στο 0
+            if values[0] < 10000:
+                score += 500
+
+            print(
+                "OFFSET:",
+                offset,
+                "START:",
+                values[0],
+                "END:",
+                values[-1],
+                "SCORE:",
+                score
+            )
+
+            if score > best_score:
+                best_score = score
+                best_offset = offset
+
+        print("SELECTED TIME OFFSET:", best_offset)
+
+        if best_offset is None:
+            return
+
+        raw_times = []
+
+        for candidate in self.osd_time_candidates:
+            raw_times.append(candidate.get(best_offset, 0))
+
+        first_time = raw_times[0]
+
+        for frame, raw_time in zip(self.frames, raw_times):
+            elapsed_ms = raw_time - first_time
+
+            if elapsed_ms < 0:
+                elapsed_ms = 0
+
+            frame.time_seconds = round(elapsed_ms / 1000, 1)
+            
     def _parse_rc(self, data: bytes):
         try:
             print("RC DATA LEN:", len(data))
@@ -235,6 +319,8 @@ class DJILogParser:
         self.last_message = ""
         self.home_latitude = None
         self.home_longitude = None
+        self.first_osd_time_ms = None
+        self.osd_time_candidates = []
 
     def parse_file(self, filepath: str) -> bool:
         path = Path(filepath)
@@ -475,7 +561,11 @@ class DJILogParser:
                     dec = xor_dec
 
             if dec:
-                if rec_type in [RecordType.SMART_BATTERY, RecordType.CENTER_BATTERY]:
+                if rec_type in [
+                    RecordType.SMART_BATTERY,
+                    RecordType.CENTER_BATTERY,
+                    48, 49, 57, 62
+                ]:
                     self._parse_battery(dec)
 
                 elif rec_type in [RecordType.APP_TIP, RecordType.APP_WARN]:
@@ -496,7 +586,9 @@ class DJILogParser:
                                 self.home_latitude = frame.latitude
                                 self.home_longitude = frame.longitude
 
-                            frame.time_seconds = round((frame.index - 0.5) * 0.2, 1)
+                            self.osd_time_candidates.append(
+                                self._get_time_candidates_from_osd(dec)
+                            )
                             frame.home_distance = self._calculate_distance_m(
                                 self.home_latitude,
                                 self.home_longitude,
@@ -528,6 +620,14 @@ class DJILogParser:
 
             cursor += 3 + rec_len + 1
         
+        
+                
+        self._assign_real_times_to_frames()
+
+        print("AES RECORD TYPES FOUND:")
+        for k, count in sorted(record_counts.items()):
+            print("TYPE:", k, "COUNT:", count)
+
         print(f"Found {len(self.frames)} frames")
         return len(self.frames) > 0
 
@@ -585,7 +685,7 @@ class DJILogParser:
                     frame.battery_percent = self.last_battery["battery_percent"]
                     frame.battery_voltage = self.last_battery["battery_voltage"]
 
-                    frame.time_seconds = round((frame.index - 0.5) * 0.2, 1)
+                    frame.time_seconds = self._parse_time_from_osd(dec)
                     frame.cell_1 = self.last_battery["cell_1"]
                     frame.cell_2 = self.last_battery["cell_2"]
                     frame.cell_3 = self.last_battery["cell_3"]
@@ -633,6 +733,27 @@ class DJILogParser:
     def _valid_gps(self, f: FlightFrame) -> bool:
         return -90 <= f.latitude <= 90 and -180 <= f.longitude <= 180 and (f.latitude != 0 or f.longitude != 0)
 
+    def _parse_time_from_osd(self, data: bytes) -> float:
+        try:
+            if len(data) < 46:
+                return 0.0
+
+            raw_time_ms = struct.unpack('<I', data[38:42])[0]
+
+            if self.first_osd_time_ms is None:
+                self.first_osd_time_ms = raw_time_ms
+
+            elapsed_ms = raw_time_ms - self.first_osd_time_ms
+
+            if elapsed_ms < 0:
+                elapsed_ms = 0
+
+            return round(elapsed_ms / 1000, 1)
+
+        except Exception as e:
+            print("TIME PARSE ERROR:", e)
+            return 0.0
+
     def _parse_osd(self, data: bytes, idx: int) -> Optional[FlightFrame]:
         try:
             lon = math.degrees(struct.unpack('<d', data[0:8])[0])
@@ -641,6 +762,12 @@ class DJILogParser:
             if idx % 500 == 0:
                 print("IDX:", idx, "LEN:", len(data))
                 print("OSD HEX 30-100:", data[30:100].hex())
+
+                print("TIME CANDIDATES:")
+                for off in range(30, len(data) - 4):
+                    val = struct.unpack('<I', data[off:off+4])[0]
+                    if 0 <= val <= 60 * 60 * 1000:
+                        print("offset:", off, "ms:", val, "sec:", round(val / 1000, 1))
 
             
             return FlightFrame(
@@ -656,48 +783,90 @@ class DJILogParser:
                 is_flying=bool(data[30] & 0x01) if len(data) > 30 else False,
                 is_motor_on=bool(data[30] & 0x10) if len(data) > 30 else False,
                 flight_mode=data[32] if len(data) > 32 else 0,
-                satellite_count=data[33] if len(data) > 33 else 0,
+                satellite_count=data[36] if len(data) > 36 else 0,
             )
         except:
             return None
 
     def _parse_battery(self, data: bytes):
+        print("BATTERY RECORD FOUND")
+        print("LEN:", len(data))
+        print("HEX:", data[:80].hex())
         try:
+            def u16(offset):
+                if offset + 2 <= len(data):
+                    return struct.unpack('<H', data[offset:offset + 2])[0]
+                return None
+
+            def is_cell_mv(v):
+                return v is not None and 3000 <= v <= 4500
+
+            def is_total_mv(v):
+                return v is not None and 12000 <= v <= 18000
+
             battery = {}
 
-            if len(data) >= 12:
-                voltage_mv = struct.unpack('<H', data[0:2])[0]
-                percent = data[11] if len(data) > 11 else 0
+            # Ψάχνουμε για 4 συνεχόμενα cell voltages σε mV
+            best_cells = None
 
-                battery["battery_voltage"] = round(voltage_mv / 1000, 3)
-                battery["battery_percent"] = float(percent)
+            for offset in range(0, len(data) - 8):
+                values = [
+                    u16(offset),
+                    u16(offset + 2),
+                    u16(offset + 4),
+                    u16(offset + 6)
+                ]
 
-            if len(data) >= 20:
-                battery["cell_1"] = round(struct.unpack('<H', data[12:14])[0] / 1000, 3)
-                battery["cell_2"] = round(struct.unpack('<H', data[14:16])[0] / 1000, 3)
-                battery["cell_3"] = round(struct.unpack('<H', data[16:18])[0] / 1000, 3)
-                battery["cell_4"] = round(struct.unpack('<H', data[18:20])[0] / 1000, 3)
+                if all(is_cell_mv(v) for v in values):
+                    best_cells = values
+                    break
+
+            if best_cells:
+                battery["cell_1"] = round(best_cells[0] / 1000, 3)
+                battery["cell_2"] = round(best_cells[1] / 1000, 3)
+                battery["cell_3"] = round(best_cells[2] / 1000, 3)
+                battery["cell_4"] = round(best_cells[3] / 1000, 3)
+
+                battery["battery_voltage"] = round(sum(best_cells) / 1000, 3)
+
+            # Αν υπάρχει ξεχωριστό total voltage, πάρε το μόνο αν είναι λογικό
+            for offset in range(0, len(data) - 2):
+                value = u16(offset)
+
+                if is_total_mv(value):
+                    total_v = round(value / 1000, 3)
+
+                    if "battery_voltage" not in battery:
+                        battery["battery_voltage"] = total_v
+
+                    break
+
+            # Ψάχνουμε battery percent σε λογικό εύρος
+            for b in data:
+                if 1 <= b <= 100:
+                    battery["battery_percent"] = float(b)
+                    break
 
             for key, value in battery.items():
-                if value:
+                if value and value > 0:
                     self.last_battery[key] = value
 
-        except Exception:
-            pass
+        except Exception as e:
+            print("BATTERY PARSE ERROR:", e)
 
     def _parse_message(self, data: bytes):
-        try:
-            text = data.decode("utf-8", errors="ignore")
-            text = text.replace("\x00", " ").strip()
+            try:
+                text = data.decode("utf-8", errors="ignore")
+                text = text.replace("\x00", " ").strip()
 
-            if text:
-                clean = " ".join(text.split())
+                if text:
+                    clean = " ".join(text.split())
 
-                if len(clean) > 5:
-                    self.last_message = clean[:250]
+                    if len(clean) > 5:
+                        self.last_message = clean[:250]
 
-        except Exception:
-            pass
+            except Exception:
+                pass
 
     def export_csv(self, path: str):
         valid = [f for f in self.frames if self._valid_gps(f)]
@@ -760,9 +929,8 @@ def frames_to_flight_data(frames):
         speed_kmh = speed_ms * 3.6
         speed_mph = speed_ms * 2.23694
 
-        first_time = getattr(frames[0], "time_seconds", 0) if frames else 0
         time_seconds_total = getattr(f, "time_seconds", i * 0.2)
-        time_seconds_total = max(0, time_seconds_total - first_time)
+        time_seconds_total = max(0, time_seconds_total) 
 
         minutes = int(time_seconds_total // 60)
         seconds = round(time_seconds_total % 60, 1)
@@ -807,7 +975,15 @@ def frames_to_flight_data(frames):
             "speed_display": f"{round(speed_kmh, 1)} km/h",
             "home_distance": f"{round(f.home_distance * 3.28084, 1)} ft" if f.home_distance else "0 ft",            "battery": f"{int(f.battery_percent)}%" if f.battery_percent else "N/A",
             "battery_display": f"{int(f.battery_percent)}%" if f.battery_percent else "N/A",
-            "battery_voltage": f"{round(f.battery_voltage, 3)} V" if f.battery_voltage else "N/A",
+            "battery_voltage": (
+                f"{round(f.battery_voltage, 3)} V"
+                if f.battery_voltage
+                else (
+                    f"{round(f.cell_1 + f.cell_2 + f.cell_3 + f.cell_4, 3)} V"
+                    if f.cell_1 and f.cell_2 and f.cell_3 and f.cell_4
+                    else "N/A"
+                )
+            ),
             "cell_1": f"{round(f.cell_1, 3)} V" if f.cell_1 else "N/A",
             "cell_2": f"{round(f.cell_2, 3)} V" if f.cell_2 else "N/A",
             "cell_3": f"{round(f.cell_3, 3)} V" if f.cell_3 else "N/A",
